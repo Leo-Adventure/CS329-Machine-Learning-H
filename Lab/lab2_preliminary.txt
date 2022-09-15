@@ -1,0 +1,43 @@
+常用库：os, numpy, matplotlib, pandas, seaborn
+
+df = pd.read_csv("") 读取 csv
+df.head() 查看默认五条表项
+df.info 查看表项列信息
+df.shape 查看形状
+df.dtypes 查看列的相关数据类型
+df.describe() 查看数值表项的相关总结信息（均值，方差，总数）
+df.describe(exclude=[np.number]) 查看分类表项的相关总结信息
+df['<col_name>'].value_counts(normalize=True) 分析指定表项的相关状态并标准化
+
+sns.countplot(x='<col_name>', data=df, palette='Set1) 使用第一种模式绘制来自 df  的数据名称为... 的分类数据的计数图
+df['<col_name>'].value_counts(normalize=True).plot.bar(title="...")使用分析的结果绘制 bar 图
+
+Credit_History=pd.crosstab(df['Credit_History'],df['Loan_Status'])
+Credit_History.plot(kind="bar", stacked=True, figsize=(5,5)) 对比分析两种属性并且绘图
+
+df["col_name"] = df["col_name"].astype('float64') 转换数据类型
+
+———————————————————————
+数据清洗
+
+df.drop("col_name", axis = 1) 去掉不必要的列
+df.isnull().sum() 求和所有的null项，展示出来
+数值数据使用平均值替换，离散数据使用最多的替换
+df["col_name"].fillna(...)
+sns.distplot("col_name") 绘制分布图
+
+———————————————————————
+数据转换
+
+df["col_name"] = np.sqrt(df['LoanAmount']) SQRT转换
+log 同理
+————————————————————————
+根据三个表项，绘制三幅图
+
+fig, axes = plt.subplots(1,3,figsize=(15,5))
+
+sns.distplot(df['LoanAmount'], ax=axes[0])
+sns.distplot(df['Sqrt_LoanAmount'], ax=axes[1])
+sns.distplot(df['Log_LoanAmount'], ax=axes[2])
+
+plt.show()
