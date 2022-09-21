@@ -115,7 +115,8 @@ plt.show()
 
 data['Log_capital-gain'] = np.log(data['capital-gain'] + 1)
 data['Log_capital-loss'] = np.log(data['capital-loss'] + 1)
-data.head()
+
+
 plt.figure(1)
 plt.subplot(121)
 sns.distplot(data['Log_capital-gain']);
@@ -146,8 +147,8 @@ data.dtypes
 
 data_copy = data.copy()
 
-numeral = ['capital-gain','capital-loss','hours-per-week']
-Z_numeral = ['Z_capital-gain','Z_capital-loss','Z_hours-per-week']
+numeral = ['age','education-num' ,'capital-gain','capital-loss','hours-per-week']
+Z_numeral = ['Z_age', 'Z_education-num', 'Z_capital-gain','Z_capital-loss','Z_hours-per-week']
 
 from sklearn.preprocessing import StandardScaler
 
@@ -199,12 +200,15 @@ print("The shape of y_test is:", y_test.shape)
 # since $ACC = \frac{TP+TN}{TP+FP+TN+FN}$, and when the model always predicted and individual made more than $50,000, then TN=FN=0, 
 # $ACC = Precision = TP/(TP + FP)$，according to the result in Exercise 1, the accuracy is 0.2478, which is lower than the normal model like Logistic Regression Model.
 # 
-# As for the F-score, since the FN = 0 when the model always predicted and individual made more than $50,000, so the F-score is 1, which is higher then the normal model like the Logistic Regression Model.
+# As for the F-score, since the FN = 0 when the model always predicted and individual made more than $50,000, so the F-score is 0.397, which is higher then the normal model like the Logistic Regression Model.
 
 # %%
 #What would the accuracy and F-score be on this dataset if we chose a model that always predicted an individual made more than $50,000
 accuracy = 0.2478439697492371
-f_score = 1
+recall = 1
+F_score = 2*accuracy * recall/(accuracy + recall)
+print(accuracy)
+print(F_score)
 
 
 # %% [markdown]
@@ -308,6 +312,7 @@ import imp
 
 
 importance = model.feature_importances_
+print("shape = ", importance.shape)
 
 indices = np.argsort(importance)[::1]   #对参数从小到大排序的索引序号取逆,即最重要特征索引——>最不重要特征索引
 
