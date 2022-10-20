@@ -336,7 +336,7 @@ Both of the model's accuracy is 93.3%, which is less than the accuracy of Decisi
 ### Questions:
 (1) Can decision trees and random forests be used for unsupervised clustering or data dimension reduction? Why?
 
-No, because the decision tree need the true label to guide the generation of decision tree, so as the random forest. And it uses labeled data to “learn” how to classify unlabeled data. And they can not map a high dimension data to a lower dimension for the reason that they should use all the given feature to classify corectly.
+No, because the decision tree need the true label to guide the generation of decision tree, so as the random forest. And it uses labeled data to “learn” how to classify unlabeled data. But the decision trees can be used for data dimension reduction, the dimension will be reduce while classifying.
 
 (2) What are the strengths of the decision tree/random forest methods; when do they perform well?
 
